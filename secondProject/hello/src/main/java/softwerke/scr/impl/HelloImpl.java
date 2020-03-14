@@ -8,7 +8,7 @@ import softwerke.scr.api.Hello;
 
 @SuppressWarnings("deprecation")
 @Component
-@Service(value = Hello.class)
+@Service(value=Hello.class)
 public class HelloImpl implements Hello {
     @Override
     public void greet() {
