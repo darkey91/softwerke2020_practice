@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="News Statistic Command">
+    <property name="osgi.command.scope" value="news"/>
+    <property name="osgi.command.function" value="stats"/>
+    <service servicefactory="false">
+        <provide interface="java.lang.Object"/>
+    </service>
+    <reference name="lentaNewsService" interface="ru.softwerke.newsapp.api.NewsService" cardinality="1..1" policy="static" target="(source=lenta)" bind="bindLentaNewsService" unbind="unbindLentaNewsService"/>
+    <reference name="aifNewsService" interface="ru.softwerke.newsapp.api.NewsService" cardinality="1..1" policy="static" target="(source=aif)" bind="bindAifNewsService" unbind="unbindAifNewsService"/>
+    <implementation class="ru.softwerke.newsapp.gogo.NewsStatsCommand"/>
+</scr:component>

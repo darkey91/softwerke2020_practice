@@ -4,19 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>ru.softwerke.2020</groupId>
+    <artifactId>news-application</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-    <groupId>softwerke.2020</groupId>
-    <artifactId>command</artifactId>
-    <version>1.0.0</version>
+    <modules>
+        <module>news-service</module>
+        <module>aif-news-service</module>
+        <module>lenta-news-service</module>
+        <module>news-stats-command</module>
+        <module>basic-news-service-impl</module>
+    </modules>
 
-    <packaging>bundle</packaging>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.gogo.runtime</artifactId>
-            <version>1.1.2</version>
-        </dependency>
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.scr.annotations</artifactId>
@@ -25,8 +31,7 @@
     </dependencies>
 
     <build>
-        <finalName>kdr_helloCommand</finalName>
-
+        <finalName>kdr_newsApplication</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -35,18 +40,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>4.2.1</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-                        <Bundle-Name>Gogo shell HelloCommand Bundle</Bundle-Name>
-                    </instructions>
                 </configuration>
             </plugin>
             <plugin>

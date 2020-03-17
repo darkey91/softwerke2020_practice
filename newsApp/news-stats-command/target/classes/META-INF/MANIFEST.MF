@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1584434567862
+Build-Jdk: 1.8.0_201
+Built-By: darkey
+Bundle-ManifestVersion: 2
+Bundle-Name: News Statistic Command Bundle
+Bundle-SymbolicName: ru.softwerke.2020.news-stats-command
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: ru.softwerke.newsapp.gogo;version="1.0.0";uses:="org.apa
+ che.felix.service.command,ru.softwerke.newsapp.api"
+Import-Package: org.apache.felix.service.command;version="[1.0,2)",ru.so
+ ftwerke.newsapp.api;version="[1.0,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/ru.softwerke.newsapp.gogo.NewsStatsCommand.x
+ ml
+Tool: Bnd-4.2.0.201903051501

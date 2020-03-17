@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1584434024016
+Build-Jdk: 1.8.0_201
+Built-By: darkey
+Bundle-ManifestVersion: 2
+Bundle-Name: 'Lenta' News Service Implementation Bundle
+Bundle-SymbolicName: ru.softwerke.2020.lenta-news-service
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: org.json;version="[20190722.0,20190723)",ru.softwerke.ne
+ wsapp.abstimpl;version="[1.0,2)",ru.softwerke.newsapp.api;version="[1.0
+ ,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/ru.softwerke.newsapp.impl.LentaNewsService.x
+ ml
+Tool: Bnd-4.2.0.201903051501

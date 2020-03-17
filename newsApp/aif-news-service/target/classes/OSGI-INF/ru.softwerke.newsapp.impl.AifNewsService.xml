@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" name="Lenta News Service">
+    <property name="source" value="aif"/>
+    <service servicefactory="false">
+        <provide interface="ru.softwerke.newsapp.api.NewsService"/>
+    </service>
+    <implementation class="ru.softwerke.newsapp.impl.AifNewsService"/>
+</scr:component>
