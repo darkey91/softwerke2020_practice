@@ -1,7 +1,7 @@
-#Simple News Application
+# Simple News Application
     This application shows TOP 10 most common title words from giiven source (Lenta news, AiF news).
 
-####How to start bundles
+#### How to start bundles
 1. Json
 2. Jsoup
 3. Basic news service
