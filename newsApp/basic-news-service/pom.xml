@@ -12,8 +12,8 @@
 
     <packaging>bundle</packaging>
 
-    <name>Abstract News Service Impl</name>
-    <artifactId>basic-news-service-impl</artifactId>
+    <name>Abstract News Service</name>
+    <artifactId>basic-news-service</artifactId>
 
     <build>
         <finalName>kdr_basicNewsService</finalName>
@@ -36,7 +36,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.name} Bundle</Bundle-Name>
-                        <Export-Package>ru.softwerke.newsapp.abstimpl</Export-Package>
+                        <Export-Package>ru.softwerke.newsapp.abst</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>ru.softwerke.2020</groupId>
-            <artifactId>basic-news-service-impl</artifactId>
+            <artifactId>basic-news-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

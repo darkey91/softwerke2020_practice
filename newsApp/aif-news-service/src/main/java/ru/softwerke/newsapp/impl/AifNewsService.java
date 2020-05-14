@@ -9,7 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ru.softwerke.newsapp.abstimpl.AbstractNewsService;
+import ru.softwerke.newsapp.abst.AbstractNewsService;
 import ru.softwerke.newsapp.api.NewsService;
 
 import java.io.IOException;
@@ -17,19 +17,19 @@ import java.io.InputStream;
 import java.util.*;
 
 @SuppressWarnings({"deprecation"})
-@Component(name = "Lenta News Service")
+@Component(name = "Aif News Service")
 @Service(value = NewsService.class)
 @Property(name = "source", value = "aif")
 public class AifNewsService extends AbstractNewsService implements NewsService {
     private static final String API_URL = "http://www.aif.ru/rss/news.php";
-    private final Map<String, Integer> words = new HashMap<>();
     private static final int MAX_NUMBER = 10;
 
     @Override
-    protected void evaluateStatistic(InputStream ins) {
+    protected Map<String, Integer> evaluateStatistic(InputStream ins) {
+        Map<String, Integer> statistic = new HashMap<>();
+
         try {
             Document document = Jsoup.connect(API_URL).get();
-
             final Elements titles = new Elements();
             document.getElementsByTag("channel")
                     .forEach(n -> titles.addAll(n.getElementsByTag("title")));
@@ -40,11 +40,11 @@ public class AifNewsService extends AbstractNewsService implements NewsService {
                             .map(String::toLowerCase)
                             .filter(w -> !IGNORED_WORDS.contains(w))
                             .forEach(w -> {
-                                Integer prevValue = words.get(w);
+                                Integer prevValue = statistic.get(w);
                                 if (prevValue == null) {
                                     prevValue = 0;
                                 }
-                                words.put(w, prevValue + 1);
+                                statistic.put(w, prevValue + 1);
                             });
 
                 }
@@ -53,13 +53,8 @@ public class AifNewsService extends AbstractNewsService implements NewsService {
             System.out.println("Can't read from " + API_URL + " in " + this.getClass().getName());
             e.printStackTrace();
         }
+        return statistic;
     }
-
-    @Override
-    protected Map<String, Integer> getWordsStatistic() {
-        return words;
-    }
-
 
     @Override
     public List<Map.Entry<String, Integer>> getTopWords() {

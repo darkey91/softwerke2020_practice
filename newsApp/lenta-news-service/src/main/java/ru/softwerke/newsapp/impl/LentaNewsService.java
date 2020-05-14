@@ -1,6 +1,5 @@
 package ru.softwerke.newsapp.impl;
 
-import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
@@ -9,7 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import ru.softwerke.newsapp.abstimpl.AbstractNewsService;
+import ru.softwerke.newsapp.abst.AbstractNewsService;
 import ru.softwerke.newsapp.api.NewsService;
 
 import java.io.InputStream;
@@ -21,7 +20,6 @@ import java.util.*;
 @Property(name = "source", value = "lenta")
 public class LentaNewsService extends AbstractNewsService implements NewsService {
     private static final String API_URL = "https://api.lenta.ru/lists/latest";
-    private final Map<String, Integer> words = new HashMap<>();
     private static final int MAX_NUMBER = 10;
 
     private String readUrl(InputStream ins) {
@@ -29,7 +27,9 @@ public class LentaNewsService extends AbstractNewsService implements NewsService
     }
 
     @Override
-    protected void evaluateStatistic(InputStream ins) {
+    protected Map<String, Integer> evaluateStatistic(InputStream ins) {
+        Map<String, Integer> statistic = new HashMap<>();
+
         try {
             JSONObject jsonObj = new JSONObject(readUrl(ins));
             JSONArray news = jsonObj.getJSONArray("headlines");
@@ -46,11 +46,11 @@ public class LentaNewsService extends AbstractNewsService implements NewsService
                                 .map(String::toLowerCase)
                                 .filter(w -> !IGNORED_WORDS.contains(w))
                                 .forEach(w -> {
-                                    Integer prevValue = words.get(w);
+                                    Integer prevValue = statistic.get(w);
                                     if (prevValue == null) {
                                         prevValue = 0;
                                     }
-                                    words.put(w, prevValue + 1);
+                                    statistic.put(w, prevValue + 1);
                                 });
                     } catch (NullPointerException e) {
                         System.out.println("NPE in " + this.getClass().getName() + ": In some cases some fields don't exist.. ");
@@ -62,11 +62,7 @@ public class LentaNewsService extends AbstractNewsService implements NewsService
         } catch (JSONException e) {
             System.out.println("Can't read headlines in " + this.getClass().getName());
         }
-    }
-
-    @Override
-    protected Map<String, Integer> getWordsStatistic() {
-        return words;
+        return statistic;
     }
 
 

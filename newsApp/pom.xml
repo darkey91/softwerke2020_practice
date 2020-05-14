@@ -13,7 +13,7 @@
         <module>aif-news-service</module>
         <module>lenta-news-service</module>
         <module>news-stats-command</module>
-        <module>basic-news-service-impl</module>
+        <module>basic-news-service</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -9,7 +9,7 @@ import ru.softwerke.newsapp.api.NewsService;
 @Service(value = Object.class)
 @Properties({
         @Property(name = "osgi.command.scope", value = "news"),
-        @Property(name = "osgi.command.function", value = { "stats"})
+        @Property(name = "osgi.command.function", value = {"stats"})
 })
 public class NewsStatsCommand {
     private static final String LENTA_SOURCE = "lenta";
@@ -48,7 +48,7 @@ public class NewsStatsCommand {
                 return;
             }
             default:
-                System.err.println("Unsupported source.  Use `help news:stats` for more information");
+                System.err.println("Unsupported source. Use `help news:stats` for more information");
         }
     }
 }
